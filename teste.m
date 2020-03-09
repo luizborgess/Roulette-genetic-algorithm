@@ -1,15 +1,14 @@
 clc,clear
 ## for teste versus vector operation
 
-
 #rand("state",1);
 A=rand(10,6)>=0.5
 vetor=sum(A',1)
 soma=sum(vetor)
 vetorfit=vetor/soma
 vetorcum=cumsum(vetorfit)
-random=rand
-
+random=rand(10,1)
+#random=rand
 
 tic,
   for i=1:length(vetorcum)
@@ -23,8 +22,8 @@ disp(['loop version time: ' num2str(toc)])
 
 tic,
 x1=length(vetorcum);
-x1=vetorcum>random;
-index=find(x1==1,1);
+x1=vetorcum>random
+index=11-sum(x1',1)
 disp(['compare replace all version time: ' num2str(toc)])
 
 ##x = zeros(10,1);
