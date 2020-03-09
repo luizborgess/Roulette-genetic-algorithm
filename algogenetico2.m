@@ -1,6 +1,6 @@
-clc
+clc,clear
 #cria pop
-#rand("state",1);
+rand("state",2);
 A=rand(10,6)>=0.5
 
 
@@ -11,8 +11,8 @@ for i=1:10
   vetorfit=vetor/soma;
   vetorcum=cumsum(vetorfit);
   for i=1:2:9
-      v1=selector(vetorcum);
-      v2=selector(vetorcum);
+      v1=roleta(vetorcum);
+      v2=roleta(vetorcum);
       array1=A(v1,:);
       array2=A(v2,:);
       crossover=randi([1,6]);
@@ -26,15 +26,11 @@ for i=1:10
   A=B;
   endfor
 
-function index= selector(vetorcum)
+function i=roleta(vetorcum)
   random=rand;
-  for i=1:length(vetorcum)
-      if vetorcum(i)>random
-        #escolhido=vetorcum(i)
-        index=i;
-        break
-      endif
-  endfor
+  x1=length(vetorcum);
+  x1=vetorcum>random;
+  i=find(x1==1,1);
 endfunction
 
 A
