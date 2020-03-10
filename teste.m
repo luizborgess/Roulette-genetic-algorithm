@@ -26,6 +26,18 @@ x1=vetorcum>random
 index=11-sum(x1',1)
 disp(['compare replace all version time: ' num2str(toc)])
 
+clc
+
+a= rand(3,4)>=0.5
+
+[l,c]=size(a)
+columrand=randi([1,c])
+linerand=randi([1,l])
+a(linerand,columrand) = ~a(linerand,columrand)
+
+
+
+
 ##x = zeros(10,1);
 ##y = rand(size(x))
 ##z = rand(size(x))
