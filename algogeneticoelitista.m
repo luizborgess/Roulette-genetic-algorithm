@@ -1,7 +1,6 @@
 clc
-#rand("state",2);
 #cria pop
-disp("Matrix de entrada")
+#rand("state",2);
 A=rand(10,6)>=0.5
 ngen=20;
 
@@ -33,10 +32,8 @@ for i=1:ngen
   linerand=randi([1,l]);
   B(linerand,columrand) = ~B(linerand,columrand);
   
-  #somaB=sum(sum(B',1))
-  #melhora_percentagem=somaB*100/soma -100   
   
-  A=B;
+  A=elitista(A,B);
   #graph vetor
   yvetor(i)=sum(sum(A,2));
   endfor
@@ -48,10 +45,19 @@ function index=roleta(vetorcum)
   x1=vetorcum>random;
   index=(length(vetorcum)+1)-sum(x1',1);
 endfunction
-disp("Matrix de saida")
-A
+
+function A=elitista(A,B)
+  #elitismo pega melhor
+  [~,melhor]=max(sum(A,2));
+  thebest=A(melhor,:);
+  #elitismo substitui melhor no pior
+  [~,worst]=min(sum(B,2));
+  A=B;
+  A(worst,:)=thebest;
+endfunction
+
+  A
 [~,tam]=max(sum(A,2));
-disp("Melhor elemento")
 A(tam,:)
 
 plot(1:ngen,yvetor)
